@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    binding.pry
+    #binding.pry
     if @user.save
       redirect_to root_path, success: '登録が完了しました'
     else
