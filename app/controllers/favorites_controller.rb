@@ -14,14 +14,10 @@ class FavoritesController < ApplicationController
       redirect_to topics_path, danger: 'お気に入りに登録に失敗しました'
     end
   end
-
-　def destroy
-　  Favorite.find_by(params[topic_id]).destroy
-　  redirect_to topics_path, success: 'お気に入りを解除します'
-　 
-　end
-　 
-　  
-　
   
+  def destroy
+    @favorite = Favorite.find_by(user_id: current_user.id,topic_id: params[:topic_id])
+    @favorite.destroy
+    redirect_to topics_path, success: 'お気に入りを解除します'
+  end
 end
